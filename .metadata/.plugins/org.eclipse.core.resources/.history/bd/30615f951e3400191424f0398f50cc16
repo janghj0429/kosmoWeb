@@ -14,7 +14,6 @@
 			border-bottom:1px solid #cccccc;
 		}
 		
-		
 		#content a{
 			text-decoration:none;
 		}
@@ -25,10 +24,6 @@
 		
 		#content li:not(.fa){
 			background-color:#ffd800;
-		}
-		
-		a[href]{
-			color:#ff0000;
 		}
 		
 	</style>
