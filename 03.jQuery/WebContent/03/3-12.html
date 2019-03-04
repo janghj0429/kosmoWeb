@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		.first {color:Red;}
+		.second {color:Pink;}
+		.third {color:Orange;}
+	</style>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			//변수선언
+			var color = ['Red','Orange','Purple'];
+			
+			//문서 객체의 스타일을 변경
+			$('h1').css({
+				color:function(index){
+					return color[index];	
+				},
+				backgroundColor:'Black'
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<h1 class="first">Header-0</h1>
+	<h1 class="second">Header-1</h1>
+	<h1 class="third">Header-2</h1>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		//무한 스크롤 부분
+		$(document).ready(function(){
+			var num=0;
+			//스크롤 이벤트 발생시
+			$(window).scroll(function(){
+				//필요 변수 구함
+				var scrollHeight = $(window).scrollTop()+$(window).height();
+				var documentHeight = $(document).height();
+				
+				//스크롤 높이가 문서의 높이와 같을떼
+				if(Math.round(scrollHeight) == Math.round(documentHeight)){
+					num++;
+					for(var i=0; i<10; i++){
+						$('<h1>Infinity Scroll '+num+'</h1>').appendTo('body');
+					}
+				}
+			});
+			//테스트를 위해 내부공간 채우기
+			for(var i=0; i<20; i++){
+				$('<h1>Infinity Scroll</h1>').appendTo('body');
+			}		
+		});
+		
+		//테스트를 위해 내부공간 채우기
+// 		$(document).ready(function(){
+// 			for(var i=0; i<20; i++){
+// 				$('<h1>Infinity Scroll</h1>').appendTo('body');
+// 			}
+// 		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>속성 선택자</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('input[type=text]').val('Hello jQuery..!');
+		});
+		//인풋(요소)의 속성값이 텍스트면 레디되면 밸류를 바꿈
+		//요소[속성~=값] 속성 안의 값이 특정 값을 단어로써포함하는객체 선택
+		//요소[속성^=값] 속성 안의 값이 특정 값으로 시작하는객체 선택
+		//요소[속성$=값] 속성 안의 값이 특정 값으로 끝나는 객체 선택
+		//요소[속성*=값] 속성 안의 값이 특정 값을 포함하는객체 선택
+	</script>
+</head>
+<body>
+	<input type="text" />
+	<input type="password" />
+	<input type="radio" />
+	<input type="checkbox" />
+	<input type="file" /><br>
+	<input type="text" />
+</body>
+</html>

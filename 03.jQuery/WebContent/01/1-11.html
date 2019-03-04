@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기본선택자 - 여러 클래스 선택자</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('.item.select').css('color','Orange');
+		});
+		//클래스는 여러개 가능, 아이디는 한개만 가능, 아이템셀렉트 띄어쓰면 안됨
+	</script>
+</head>
+<body>
+	<h1 class="item">jQuery.....1</h1>
+	<h1 class="item select">jQuery.....2</h1>
+	<h1 class="item">jQuery.....3</h1>
+	
+	<h2 class="item">jQuery.....4</h2>
+
+</body>
+</html>

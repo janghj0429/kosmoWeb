@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>05-06 웹 페이지 자동스크롤</title>
+<script>
+function startScroll(interval){
+	setInterval("autoScroll()", interval);
+}
+
+function autoScroll(){
+	window.scrollBy(0,10); // 10픽셀 위로 이동
+}
+</script>
+</head>
+<body onload="startScroll(1000)">
+<h3>자동 스크롤 페이지</h3>
+<hr>
+<h3>한글</h3>
+가<br>
+나<br>
+다<br>
+라<br>
+마<br>
+바<br>
+사<br>
+아<br>
+자<br>
+카<br>
+타<br>
+파<br>
+하<br>
+ㄱ<br>
+ㄴ<br>
+ㄷ<br>
+ㄹ<br>
+ㅁ<br>
+ㅂ<br>
+ㅅ<br>
+ㅇ<br>
+ㅈ<br>
+ㅊ<br>
+ㅋ<br>
+ㅌ<br>
+ㅍ<br>
+ㅎ<br>
+
+
+</body>
+</html>

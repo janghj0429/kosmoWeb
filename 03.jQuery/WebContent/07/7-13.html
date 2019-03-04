@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			//변수 선언
+			 var data = {
+					name:'RintIanTta',
+					region:'Seoul',
+			};
+			
+			//출력
+			$('<h1></h1>').text($.param(data)).appendTo('body');
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

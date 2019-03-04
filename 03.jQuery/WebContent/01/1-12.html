@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자식선택자</title>
+	
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('div > h1').css('color','Orange');
+		});
+		//자식이니 바로 밑에만 영향
+	</script>
+	
+</head>
+<body>
+	<div>
+		<ul>
+			<li><h1>Apple</h1></li>
+			<li>Apple</li>
+			<li>Apple</li>
+			<li>Apple</li>
+			<li>Apple</li>
+		</ul>
+		<h1>Child</h1>
+	</div>
+</body>
+</html>

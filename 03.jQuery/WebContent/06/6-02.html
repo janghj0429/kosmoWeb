@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6-02</title>
+
+</head>
+<body>
+	<script>
+	//XMLHttpRequest 객체를 생성하는 함수
+	function createRequest(){
+		var request;
+		try{
+			request = new XMLHttpRequest();
+		}catch(exception){
+			try{
+				request = new ActiveXObject('Msxm12.XMLHTTP');
+			}catch(innerException){
+				request = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+		}
+		return request;
+	}
+	
+	//XMLHttpRequest 객체를 생성
+	var request = createRequest();
+	request.open('GET','/data.html',false);
+		
+	//Ajax 수행
+	request.send();
+		
+	//출력
+	alert(request.responseText);
+	document.body.innerHTML += request.responseText;
+	</script>
+	
+</body>
+</html>

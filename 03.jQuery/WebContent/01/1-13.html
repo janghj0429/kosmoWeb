@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>후손 선택자</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('div h1').css('color','Orange');
+		});
+		//후손이라 밑에 까지 영향
+	</script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li><h1>Child</h1></li>
+			<li>Apple</li>
+			<li>Apple</li>
+			<li><h1>Child</h1></li>
+			<li>Apple</li>
+		</ul>
+		<h1>Child</h1>
+	</div>
+	<h1>not Child</h1>
+</body>
+</html>

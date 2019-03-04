@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			//변수선언
+			var array=[
+				{name:'Google',link:'http://google.com'},
+				{name:'Naver',link:'http://naver.com'},
+				{name:'Daum',link:'http://daum.net'}
+			];
+			
+			//$.each()메서드를 사용
+			$.each(array, function(index, item){
+				//변수선언
+				var output='';
+				//문자열 만듬
+				output += '<a href="' + item.link + '">';
+				output += ' <h1> ' + item.name + ' </h1> ';
+				output += '</a>';
+				//집어넣음
+				document.body.innerHTML += output;
+			});
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

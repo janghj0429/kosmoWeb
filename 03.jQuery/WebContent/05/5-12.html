@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		.reverse{
+			color:Orange;
+			background-color:Green;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('div').hover(function(){
+				$(this).addClass('reverse',1000);
+			}, function(){
+				$(this).removeClass('reverse',1000);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<h1>JQuery</h1>
+		<p>JQueryJQueryJQueryJQuery</p>
+	</div>
+	<div>
+		<h1>JQuery</h1>
+		<p>JQueryJQueryJQueryJQuery</p>
+	</div>
+	<div>
+		<h1>JQuery</h1>
+		<p>JQueryJQueryJQueryJQuery</p>
+	</div>
+</body>
+</html>

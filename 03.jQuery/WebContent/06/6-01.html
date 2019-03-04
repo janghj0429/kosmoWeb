@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6-01</title>
+
+</head>
+<body>
+	<script>
+		var request = new XMLHttpRequest();
+		request.open('GET','/data.html',false);
+		
+		//Ajax 수행
+		request.send();
+		
+		//출력
+		alert(request.responseText);
+		document.body.innerHTML += request.responseText;
+	</script>
+	
+</body>
+</html>
