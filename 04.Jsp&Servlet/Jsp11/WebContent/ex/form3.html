@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#my-form').submit(function(event){
+				//Ajax 요청 수행
+				$('#wrap').load('result.jsp', $(this).serialize());
+				
+				//기본 이벤트 제거
+				event.preventDefault();
+			});
+		});
+	</script>
+</head>
+<body>
+	<form id="my-form">
+		첫 번째 수 : <input type="text" name="name" id="name" size="10"><br/>
+		두 번째 수 : <input type="text" name="id" id="id" size="10"><br/>
+		<input type="radio" name="major" value="+">더하기
+		<input type="radio" name="major" value="-" checked="checked">빼기
+		<input type="radio" name="major" value="*">곱하기
+		<input type="radio" name="major" value="/">나누기<br/>
+		<input type="submit" value="계산결과보기"><input type="reset" value="초기화">
+	</form>
+	
+	<div id="wrap">
+	
+	</div>
+	
+</body>
+</html>

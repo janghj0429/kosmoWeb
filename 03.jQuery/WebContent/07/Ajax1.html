@@ -29,6 +29,7 @@
 	
 	function return_xml(data){
 		//xml read
+		console.log(data);
 		$(data).find('data').each(function(){
 			//변수 선언
 			var name = $(this).find('name').text();
@@ -36,6 +37,7 @@
 			
 			//출력
 			$('<h1></h1>').text(name + ':' + price).appendTo('body');
+			
 		});
 	}
 	

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+	function form_check(){
+		//기본 체크
+		var vName = $('#name').val();
+		
+		submit_ajax();
+	}
+	function submit_ajax(){
+		$.ajax({
+			url:'result.jsp',
+			type:'post',
+			dataType:'text',
+			data:$('#my-form').serialize(),
+			error:function(xhr,status,error){
+				alert(error);
+			},
+			success:function(data){
+				return_xml(data);
+			}
+		});
+	}
+	function return_xml(data){
+		console.log(data);
+		$('body').append(data);
+		
+		//기본 이벤트 제거
+		event.preventDefault();
+	}
+	
+	$(document).ready(function(){
+			
+	});
+	</script>
+</head>
+<body>
+	<form id="my-form" >
+		첫 번째 수 : <input type="text" name="name" id="name" size="10"><br/>
+		두 번째 수 : <input type="text" name="id" id="id" size="10"><br/>
+		<input type="radio" name="major" value="+">더하기
+		<input type="radio" name="major" value="-" checked="checked">빼기
+		<input type="radio" name="major" value="*">곱하기
+		<input type="radio" name="major" value="/">나누기<br/>
+		<input type="button" value="get Ajax String" onclick="form_check();"/>
+		<input type="reset" value="초기화">
+	</form>
+	
+	<div id="wrap">
+	
+	</div>
+</body>
+</html>

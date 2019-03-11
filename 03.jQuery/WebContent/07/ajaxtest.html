@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax test</title>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script>
+	function form_check(){
+		//기본 체크
+		var vName = $('#name').val();
+		//if 조건해서 맞는 쪽으로 진행.
+		submit();
+	}	
+	
+	function submit(){
+		$.ajax({
+			url:'/parameter.jsp',
+			type:'post',
+			data:$('#my-form').serialize(),
+			success: function(data){
+				$('body').append(data);
+			}
+		});
+	}
+	
+	function submit_ajax(){
+		$.ajax({
+			url:'/parameter2.jsp',
+			type:'post',
+			dataType:'text',
+			data:$('#my-form').serialize(),
+			error:function(xhr,status,error){
+				alert(error);
+			},
+			success:function(data){
+				return_xml(data);
+			}
+		});
+	}
+	
+	function return_xml(data){
+		//xml read
+		$('<h1></h1>').text(data).appendTo('body');
+		$(data).find('datass').each(function(){
+			//변수 선언
+			var name = $(this).find('name').text();
+			var price = $(this).find('price').text();
+			
+			//출력
+			$('<h1></h1>').text(name + ':' + price).appendTo('body');
+		});
+	
+	}
+	
+	$(document).ready(function(){
+		$('#my-form').onclick	
+	});
+	</script>
+</head>
+<body>
+	<form id="my-form">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><input id="name" name="name" type="text"/></td>
+			</tr>
+			<tr>
+				<td>Region</td>
+				<td><input id="region" name="region" type="text"/></td>
+			</tr>
+		</table>
+		<input type="button" value="Get Ajax String" onclick="form_check();"/>
+	</form>
+
+</body>
+</html>
