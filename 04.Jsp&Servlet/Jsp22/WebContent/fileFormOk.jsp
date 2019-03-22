@@ -22,12 +22,19 @@
 		file = multi.getFilesystemName(str);
 		oriFile = multi.getOriginalFileName(str);
 		
+		session.setAttribute("filename", file);
+		
 		out.println(path);
 		
 	}catch(Exception e){
 		e.printStackTrace();
 	}
 %>    
+
+<script>
+	alert("제출완료");
+	window.location.replace("fileForm.jsp");
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +43,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	file upload success!
+	
+	
 </body>
 </html>

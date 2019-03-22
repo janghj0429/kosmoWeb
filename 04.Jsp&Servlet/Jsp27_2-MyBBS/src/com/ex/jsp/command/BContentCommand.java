@@ -14,7 +14,7 @@ public class BContentCommand implements BCommand{
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 	{
 		
-		System.out.println("content command or modify");
+		System.out.println("content command");
 		
 		String bId = request.getParameter("bId");
 		String bKind = request.getParameter("kind");

@@ -8,12 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ex.jsp.command.BCommand;
 import com.ex.jsp.command.BContentCommand;
 import com.ex.jsp.command.BDeleteCommand;
 import com.ex.jsp.command.BListCommand;
 import com.ex.jsp.command.BModifyCommand;
+import com.ex.jsp.command.BReplyCommand;
+import com.ex.jsp.command.BReplyViewCommand;
 import com.ex.jsp.command.BWriteCommand;
 
 @WebServlet("*.do")
@@ -53,6 +56,13 @@ public class BFrontController extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		System.out.println("command : " + com);
 		
+		HttpSession session = null;
+		session = request.getSession();
+		int curPage = 1;
+		if(session.getAttribute("cpage") != null) {
+			curPage = (int)session.getAttribute("cpage");
+		}
+		
 		if(com.equals("/write_view.do")) {
 			viewPage = "write_view.jsp";
 		}else if(com.equals("/write.do")) {
@@ -82,7 +92,15 @@ public class BFrontController extends HttpServlet {
 		}else if(com.equals("/delete.do")) {
 			command = new BDeleteCommand();
 			command.execute(request, response);
-			viewPage = "list.do";
+			viewPage = "list.do?page="+curPage;
+		}else if(com.equals("/reply_view.do")) {
+			command = new BReplyViewCommand();
+			command.execute(request, response);
+			viewPage = "reply_view.jsp";
+		}else if(com.equals("/reply.do")) {
+			command = new BReplyCommand();
+			command.execute(request, response);
+			viewPage = "list.do?page="+curPage;
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

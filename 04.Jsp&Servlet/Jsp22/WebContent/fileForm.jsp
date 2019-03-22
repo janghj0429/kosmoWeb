@@ -10,6 +10,10 @@
 
 	<form action="fileFormOk.jsp" method="post" enctype="multipart/form-data">
 		파일 : <input type="file" name="filename"><br/>
+		파일 : <input type="file" name="filename"><br/>
+		파일 : <input type="file" name="filename"><br/>
+		파일 : <input type="file" name="filename"><br/>
+		파일 : <input type="file" name="filename"><br/>
 		<input type="submit" value="File Upload">
 	</form>
 	

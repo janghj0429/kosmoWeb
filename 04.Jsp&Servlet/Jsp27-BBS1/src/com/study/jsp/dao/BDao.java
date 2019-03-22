@@ -19,7 +19,7 @@ public class BDao {
 	DataSource dataSource;
 	
 	int listCount = 5;	//한페이지당 보여줄 게시물의 갯수
-	int pageCount = 10;	//하단에 보여줄페이지 리스트의 갯수
+	int pageCount = 5;	//하단에 보여줄페이지 리스트의 갯수
 	
 	private static BDao instance = new BDao();
 	private BDao() {
@@ -42,7 +42,7 @@ public class BDao {
 		ResultSet resultSet = null;
 		
 		int listCount = 5;	// 한페이지당 보여줄 게시물의 객수
-		int pageCount = 10;	// 하단에 보여줄 페이지리스트의 객수
+		int pageCount = 5;	// 하단에 보여줄 페이지리스트의 객수
 		
 		//총 게시물의 갯수
 		int totalCount = 0;
@@ -156,6 +156,7 @@ public class BDao {
 			resultSet = pstmt.executeQuery();
 			
 			while(resultSet.next()) {
+				System.out.println("3");
 				int bId = resultSet.getInt("bId");
 				String bName = resultSet.getString("bName");
 				String bTitle = resultSet.getString("bTitle");
@@ -165,7 +166,7 @@ public class BDao {
 				int bGroup = resultSet.getInt("bGroup");
 				int bStep = resultSet.getInt("bStep");
 				int bIndent = resultSet.getInt("bIndent");
-				
+				System.out.println("4");
 				BDto dto = new BDto(bId, bName, bTitle, bContent, bDate,
 									bHit, bGroup, bStep, bIndent);
 				dtos.add(dto);
