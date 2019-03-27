@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -156,6 +157,137 @@ public class BoardDao {
 				int bGroup = resultSet.getInt("bGroup");
 				int bStep = resultSet.getInt("bStep");
 				int bIndent = resultSet.getInt("bIndent");
+				String mark = checkDate(bDate);
+				bTitle = mark + bTitle;
+				System.out.println("here4");
+				BoardDto dto = new BoardDto(bCategory, bId, bName, bTitle, bContent, bDate,
+									bHit, bGroup, bStep, bIndent);
+				dtos.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return dtos;
+	}
+	
+	public BPageInfo articleWholePage(int curPage){
+		
+		System.out.println("아티클");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		
+		int listCount = 5;	// 한페이지당 보여줄 게시물의 객수
+		int pageCount = 5;	// 하단에 보여줄 페이지리스트의 객수
+		
+		//총 게시물의 갯수
+		int totalCount = 0;
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select count(*) as total from mvc_board";
+	
+			pstmt = con.prepareStatement(query);
+			resultSet = pstmt.executeQuery();
+			
+			if(resultSet.next()) {
+				totalCount = resultSet.getInt("total");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		//총페이지 수
+		int totalPage = totalCount / listCount;
+		if(totalCount % listCount > 0)
+			totalPage++;
+		
+		//현재페이지
+		int myCurPage = curPage;
+		if(myCurPage > totalPage)
+			myCurPage = totalPage;
+		if(myCurPage < 1)
+			myCurPage = 1;
+		
+		//시작페이지
+		int startPage = ( (myCurPage -1)/pageCount ) * pageCount + 1;
+		
+		//끝페이지
+		int endPage = startPage + pageCount - 1;
+		if(endPage > totalPage)
+			endPage = totalPage;
+		System.out.println("w아티클");
+		
+		BPageInfo pinfo = new BPageInfo();
+		pinfo.setTotalCount(totalCount);
+		pinfo.setListCount(listCount);
+		pinfo.setTotalPage(totalPage);
+		pinfo.setCurPage(curPage);
+		pinfo.setPageCount(pageCount);
+		pinfo.setStartPage(startPage);
+		pinfo.setEndPage(endPage);
+		
+		return pinfo;
+	}
+	
+	public ArrayList<BoardDto> wholeList(int curPage){
+		
+		ArrayList<BoardDto> dtos = new ArrayList<BoardDto>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		
+		int nStart = (curPage - 1) * listCount + 1;
+		int nEnd = (curPage - 1) * listCount + listCount;
+//		System.out.println("리스트카테고리 : " + Category);
+//		System.out.println("start: " + nStart + " end : " + nEnd);
+		
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select * from( " +
+						   " select rownum num, A.* from( " +
+						   " select * from mvc_board order by bgroup desc, bstep asc) A "+
+						   " where rownum <= ?) B where b.num >= ? ";
+			
+			System.out.println("here");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, nEnd);
+			pstmt.setInt(2, nStart);
+			resultSet = pstmt.executeQuery();
+
+			System.out.println("here2");
+			while(resultSet.next()) {
+				System.out.println("here3");
+				int bCategory = resultSet.getInt("bCategory");
+				int bId = resultSet.getInt("bId");
+				String bName = resultSet.getString("bName");
+				String bTitle = resultSet.getString("bTitle");
+				String bContent = resultSet.getString("bContent");
+				Timestamp bDate = resultSet.getTimestamp("bDate");
+				int bHit = resultSet.getInt("bHit");
+				int bGroup = resultSet.getInt("bGroup");
+				int bStep = resultSet.getInt("bStep");
+				int bIndent = resultSet.getInt("bIndent");
+				String mark = checkDate(bDate);
+				bTitle = mark + bTitle;
 				System.out.println("here4");
 				BoardDto dto = new BoardDto(bCategory, bId, bName, bTitle, bContent, bDate,
 									bHit, bGroup, bStep, bIndent);
@@ -444,60 +576,34 @@ public class BoardDao {
 			}
 		}
 	}	
-//	public int confirmNCT(String bName, String bContent, String bTitle) {
-//		int ri = 0;
-//		
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet resultSet = null;
-//		
-//		try {
-//			con = dataSource.getConnection();
-//			String query = "select count(*) as total from ( "
-//					 + " select * from mvc_board where bName = ? "
-//					 + " or bContent = ? or bTitle = ?)";
-//			pstmt = con.prepareStatement(query);
-//			pstmt.setString(1, bName);
-//			resultSet = pstmt.executeQuery();
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			try {
-//				if(resultSet != null) resultSet.close();
-//				if(pstmt != null) pstmt.close();
-//				if(con != null) con.close();
-//			}catch(Exception e2) {
-//				e2.printStackTrace();
-//			}
-//		}
-//		return ri;
-//	}
 	
-	public BPageInfo articleNamePage(int curPage, String bName){
+	public BPageInfo articleSearchPage(int curPage, String column, String word){
 		
-		System.out.println("아티클");
+		System.out.println("통합아티클");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 		
 		int listCount = 5;	// 한페이지당 보여줄 게시물의 객수
 		int pageCount = 5;	// 하단에 보여줄 페이지리스트의 객수
-		
+		System.out.println(column + word);
 		//총 게시물의 갯수
 		int totalCount = 0;
 		try {
 			con = dataSource.getConnection();
 			
-			String query = "select count(*) as total from ("
-						 + "select * from mvc_board where bName = ?)";
+			String query = "select count(*) as total from " +
+						   " mvc_board where " + column +
+						   " like  ? ";
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, bName);
+			//pstmt.setString(1, column);
+			pstmt.setString(1, "%"+word+"%");
 			resultSet = pstmt.executeQuery();
 			
 			if(resultSet.next()) {
 				totalCount = resultSet.getInt("total");
+				System.out.println(totalCount);
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -529,12 +635,11 @@ public class BoardDao {
 		int endPage = startPage + pageCount - 1;
 		if(endPage > totalPage)
 			endPage = totalPage;
-		System.out.println("아티클 : " + bName);
+		System.out.println("검색아티클 : " + column + word);
 		
 		BPageInfo pinfo = new BPageInfo();
-		pinfo.setBoardName(bName);
-		pinfo.setBoardContent("");
-		pinfo.setBoardTitle("");
+		pinfo.setBoardColumn(column);
+		pinfo.setBoardWord(word);
 		pinfo.setTotalCount(totalCount);
 		pinfo.setListCount(listCount);
 		pinfo.setTotalPage(totalPage);
@@ -546,7 +651,7 @@ public class BoardDao {
 		return pinfo;
 	}
 	
-	public ArrayList<BoardDto> nameList(int curPage, String str){
+	public ArrayList<BoardDto> searchList(int curPage, String column, String word){
 		
 		ArrayList<BoardDto> dtos = new ArrayList<BoardDto>();
 		Connection con = null;
@@ -564,22 +669,15 @@ public class BoardDao {
 			String query = "select * from( " +
 						   "select rownum num, A.* from( " +
 						   "select * from( " +
-						   "select * from mvc_board where bName=?) " +
+						   "select * from mvc_board where "+column+" like ?) " +
 						   "order by bgroup desc, bstep asc) A " +
 						   "where rownum <= ?) B where b.num >= ? ";
 			
-//			String query = "select * " +
-//						   " from(" +
-//						   "  select rownum num, A.* " +
-//						   "    from(" + 
-//						   "     select * " +
-//						   "      from mvc_board where bCategory = ?" +
-//						   "      order by bgroup desc, bstep asc) A " +
-//						   "      where rownum <= ?) B " + 
-//						   " where b.num >= ?";
-			System.out.println("here");
+			System.out.println("통합");
+			System.out.println(column + word);
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, str);
+			//pstmt.setString(1, column);
+			pstmt.setString(1, "%"+word+"%");
 			pstmt.setInt(2, nEnd);
 			pstmt.setInt(3, nStart);
 			resultSet = pstmt.executeQuery();
@@ -597,139 +695,8 @@ public class BoardDao {
 				int bGroup = resultSet.getInt("bGroup");
 				int bStep = resultSet.getInt("bStep");
 				int bIndent = resultSet.getInt("bIndent");
-				System.out.println("here4");
-				BoardDto dto = new BoardDto(bCategory, bId, bName, bTitle, bContent, bDate,
-									bHit, bGroup, bStep, bIndent);
-				dtos.add(dto);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			}catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-		return dtos;
-	}
-		
-	public BPageInfo articleContentPage(int curPage, String bContent){
-		
-		System.out.println("아티클");
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet resultSet = null;
-		
-		int listCount = 5;	// 한페이지당 보여줄 게시물의 객수
-		int pageCount = 5;	// 하단에 보여줄 페이지리스트의 객수
-		
-		//총 게시물의 갯수
-		int totalCount = 0;
-		try {
-			con = dataSource.getConnection();
-			
-			String query = "select count(*) as total from ("
-						 + "select * from mvc_board where bContent like ?)";
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "%"+bContent+"%");
-			resultSet = pstmt.executeQuery();
-			
-			if(resultSet.next()) {
-				totalCount = resultSet.getInt("total");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			}catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-		//총페이지 수
-		int totalPage = totalCount / listCount;
-		if(totalCount % listCount > 0)
-			totalPage++;
-		
-		//현재페이지
-		int myCurPage = curPage;
-		if(myCurPage > totalPage)
-			myCurPage = totalPage;
-		if(myCurPage < 1)
-			myCurPage = 1;
-		
-		//시작페이지
-		int startPage = ( (myCurPage -1)/pageCount ) * pageCount + 1;
-		
-		//끝페이지
-		int endPage = startPage + pageCount - 1;
-		if(endPage > totalPage)
-			endPage = totalPage;
-		System.out.println("아티클 : " + bContent);
-		
-		BPageInfo pinfo = new BPageInfo();
-		pinfo.setBoardName("");
-		pinfo.setBoardContent(bContent);
-		pinfo.setBoardTitle("");
-		pinfo.setTotalCount(totalCount);
-		pinfo.setListCount(listCount);
-		pinfo.setTotalPage(totalPage);
-		pinfo.setCurPage(curPage);
-		pinfo.setPageCount(pageCount);
-		pinfo.setStartPage(startPage);
-		pinfo.setEndPage(endPage);
-		
-		return pinfo;
-	}
-	
-	public ArrayList<BoardDto> contentList(int curPage, String str){
-		
-		ArrayList<BoardDto> dtos = new ArrayList<BoardDto>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet resultSet = null;
-		
-		int nStart = (curPage - 1) * listCount + 1;
-		int nEnd = (curPage - 1) * listCount + listCount;
-
-		
-		try {
-			con = dataSource.getConnection();
-			
-			String query = "select * from( " +
-						   "select rownum num, A.* from( " +
-						   "select * from( " +
-						   "select * from mvc_board where bContent like ?) " +
-						   "order by bgroup desc, bstep asc) A " +
-						   "where rownum <= ?) B where b.num >= ? ";
-			
-			System.out.println("here");
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "%"+str+"%");
-			pstmt.setInt(2, nEnd);
-			pstmt.setInt(3, nStart);
-			resultSet = pstmt.executeQuery();
-//			System.out.println( resultSet.getInt("bCategory") + " listDao");
-			System.out.println("here2");
-			while(resultSet.next()) {
-				System.out.println("here3");
-				int bCategory = resultSet.getInt("bCategory");
-				int bId = resultSet.getInt("bId");
-				String bName = resultSet.getString("bName");
-				String bTitle = resultSet.getString("bTitle");
-				String bContent = resultSet.getString("bContent");
-				Timestamp bDate = resultSet.getTimestamp("bDate");
-				int bHit = resultSet.getInt("bHit");
-				int bGroup = resultSet.getInt("bGroup");
-				int bStep = resultSet.getInt("bStep");
-				int bIndent = resultSet.getInt("bIndent");
+				String mark = checkDate(bDate);
+				bTitle = mark + bTitle;
 				System.out.println("here4");
 				BoardDto dto = new BoardDto(bCategory, bId, bName, bTitle, bContent, bDate,
 									bHit, bGroup, bStep, bIndent);
@@ -750,141 +717,26 @@ public class BoardDao {
 		return dtos;
 	}
 	
-	public BPageInfo articleTitlePage(int curPage, String bTitle){
-		
-		System.out.println("아티클");
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet resultSet = null;
-		
-		int listCount = 5;	// 한페이지당 보여줄 게시물의 객수
-		int pageCount = 5;	// 하단에 보여줄 페이지리스트의 객수
-		
-		//총 게시물의 갯수
-		int totalCount = 0;
-		try {
-			con = dataSource.getConnection();
-			
-			String query = "select count(*) as total from ("
-						 + "select * from mvc_board where bTitle like ?)";
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "%"+bTitle+"%");
-			resultSet = pstmt.executeQuery();
-			
-			if(resultSet.next()) {
-				totalCount = resultSet.getInt("total");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			}catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-		//총페이지 수
-		int totalPage = totalCount / listCount;
-		if(totalCount % listCount > 0)
-			totalPage++;
-		
-		//현재페이지
-		int myCurPage = curPage;
-		if(myCurPage > totalPage)
-			myCurPage = totalPage;
-		if(myCurPage < 1)
-			myCurPage = 1;
-		
-		//시작페이지
-		int startPage = ( (myCurPage -1)/pageCount ) * pageCount + 1;
-		
-		//끝페이지
-		int endPage = startPage + pageCount - 1;
-		if(endPage > totalPage)
-			endPage = totalPage;
-		System.out.println("아티클 : " + bTitle);
-		
-		BPageInfo pinfo = new BPageInfo();
-		pinfo.setBoardName("");
-		pinfo.setBoardContent("");
-		pinfo.setBoardTitle(bTitle);
-		pinfo.setTotalCount(totalCount);
-		pinfo.setListCount(listCount);
-		pinfo.setTotalPage(totalPage);
-		pinfo.setCurPage(curPage);
-		pinfo.setPageCount(pageCount);
-		pinfo.setStartPage(startPage);
-		pinfo.setEndPage(endPage);
-		
-		return pinfo;
-	}
-	
-	public ArrayList<BoardDto> titleList(int curPage, String str){
-		
-		ArrayList<BoardDto> dtos = new ArrayList<BoardDto>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet resultSet = null;
-		
-		int nStart = (curPage - 1) * listCount + 1;
-		int nEnd = (curPage - 1) * listCount + listCount;
 
-		
-		try {
-			con = dataSource.getConnection();
-			
-			String query = "select * from( " +
-						   "select rownum num, A.* from( " +
-						   "select * from( " +
-						   "select * from mvc_board where bTitle like ?) " +
-						   "order by bgroup desc, bstep asc) A " +
-						   "where rownum <= ?) B where b.num >= ? ";
-			
-
-			System.out.println("here");
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "%"+str+"%");
-			pstmt.setInt(2, nEnd);
-			pstmt.setInt(3, nStart);
-			resultSet = pstmt.executeQuery();
-//			System.out.println( resultSet.getInt("bCategory") + " listDao");
-			System.out.println("here2");
-			while(resultSet.next()) {
-				System.out.println("here3");
-				int bCategory = resultSet.getInt("bCategory");
-				int bId = resultSet.getInt("bId");
-				String bName = resultSet.getString("bName");
-				String bTitle = resultSet.getString("bTitle");
-				String bContent = resultSet.getString("bContent");
-				Timestamp bDate = resultSet.getTimestamp("bDate");
-				int bHit = resultSet.getInt("bHit");
-				int bGroup = resultSet.getInt("bGroup");
-				int bStep = resultSet.getInt("bStep");
-				int bIndent = resultSet.getInt("bIndent");
-				System.out.println("here4");
-				BoardDto dto = new BoardDto(bCategory, bId, bName, bTitle, bContent, bDate,
-									bHit, bGroup, bStep, bIndent);
-				dtos.add(dto);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(resultSet != null) resultSet.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			}catch(Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		
-		return dtos;
+	
+	public String checkDate(Timestamp bDate) {
+		String result = "";	
+//		1. 글을 작성하면 작성한 날 하루 동안 new 표시하기
+//		java.text.SimpleDateFormat sf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+//		String inputDate = sf.format(입력된 날짜);
+//		String now = sf.format(new java.util.Date());
+//		String mark = "";
+//		if(inputDate.equals(now)){
+//		 mark = "new";
+//		}
+		Date boardDate = bDate;
+		long now = System.currentTimeMillis();
+		long inputDate = boardDate.getTime();
+		if(now - inputDate < (1000*60*60*24*2)) {
+			result = "new	";
+		}		
+		return result;
 	}
-	
-	
 	
 	
 }

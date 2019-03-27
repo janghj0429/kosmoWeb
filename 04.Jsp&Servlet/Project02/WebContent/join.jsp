@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>join</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script>
 	function mId_check(){
@@ -73,23 +76,52 @@
 		});
 	}
 	</script>
+	
+	<style>
+		div{
+			width:800px;
+			margin:2px auto;
+		}
+	</style>
+	
+    <title></title>
+  </head>
+  <body>
+	<form id="join_form" action="join.do" method="post">
+	
+	  <div class="form-group">
+	      <label for="inputId">ID</label>
+	      <input type="text" class="form-control" id="mid" name="mid" placeholder="ID">
+	  </div>
+	  <div class="form-group">
+	      <label for="inputPassword">Password</label>
+	      <input type="password" class="form-control" id="mpw" name="mpw" placeholder="Password">
+	  </div>
+	  <div class="form-group">
+	      <label for="inputPassword">Password check</label>
+	      <input type="password" class="form-control" id="mpw_check" name="mpw_check" placeholder="Password_check">
+	  </div>
+	  <div class="form-group">
+	      <label for="inputName">Name</label>
+	      <input type="text" class="form-control" name="mname" id="mname" placeholder="Name">
+	  </div>
+	  <div class="form-group">
+	      <label for="inputEmail">Email</label>
+	      <input type="email" class="form-control" id="memail" name="memail" placeholder="Email"><br/>
+	  </div>
+	  <div class="form-group">
+	  	  <label for="inputAddress">Address </label>
+	    	 <input type="text" class="form-control" name="maddress" id="maddress"  placeholder="Apartment, studio, or floor">
+	  </div>
+	  
+	  <button type="submit" class="btn btn-primary">Sign in</button>
+	</form>
+    
 
 
-</head>
-<body>
-	
-		<form id="join_form" name="join_form" action="join.do" method="post">
-			아이디 : <input type="text" id="mid" name="mid" size="20"><br>
-			<input type="button" value="아이디중복체크" onclick="mId_check();">&nbsp;&nbsp;&nbsp;
-			비밀번호 : <input type="password" id="mpw" name="mpw" size="20"><br>
-			비밀번호 확인 : <input type="password" id="mpw_check" name="mpw_check" size="20"><br>
-			이름 : <input type="text" name="mname" id="mname" size="20"><br>
-			메일 : <input type="text" name="memail" id="memail" size="20"><br>
-			주소 : <input type="text" name="maddress" id="maddress" size="50"><br>
-			<input type="submit" value="조인">
-			<input type="button" value="회원가입" onclick="JavaScript:form_check();">&nbsp;&nbsp;&nbsp;
-			<input type="button" value="로그인" onclick="javascript:window.location='login.jsp'">
-		</form>
-	
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>

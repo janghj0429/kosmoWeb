@@ -210,6 +210,32 @@ import project.jsp.dto.MemberDto;
 		return ri;
 	}
 	
+	public void deleteDummy() {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String query = "delete from members where mName=?";
+		String dummy = "dummy";
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, dummy);
+			pstmt.executeUpdate();
+			System.out.println("더미 삭제");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	
+	
 	
 	private Connection getConnection() {
 		

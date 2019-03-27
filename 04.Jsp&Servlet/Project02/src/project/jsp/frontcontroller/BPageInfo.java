@@ -3,9 +3,13 @@ package project.jsp.frontcontroller;
 public class BPageInfo {
 
 	int boardCategory;		//게시판의 구분
+	String boardColumn = "";
+	String boardWord = "";
+	
 	String boardName = "";
 	String boardTitle = "";
 	String boardContent = "";
+	
 	int totalCount;		//총 게시물의 갯수
 	int listCount;		//한 페이지당 보여줄 게시물의 갯수
 	int totalPage;		//총 페이지
@@ -25,9 +29,27 @@ public class BPageInfo {
 	public void setBoardCategory(int boardCategory) {
 		this.boardCategory = boardCategory;
 	}
+	
+	public String getBoardColumn() {
+		return boardColumn;
+	}
 
-	
-	
+
+	public void setBoardColumn(String boardColumn) {
+		this.boardColumn = boardColumn;
+	}
+
+
+	public String getBoardWord() {
+		return boardWord;
+	}
+
+
+	public void setBoardWord(String boardWord) {
+		this.boardWord = boardWord;
+	}
+
+
 	public String getBoardName() {
 		return boardName;
 	}

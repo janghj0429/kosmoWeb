@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -137,6 +138,9 @@ public class FileDao {
 				String orgfileName = resultSet.getString("orgfileName");			
 				Timestamp fDate = resultSet.getTimestamp("fDate");
 				int fHit = resultSet.getInt("fHit");
+				
+				String mark = checkDate(fDate);
+				fTitle = mark + fTitle;
 
 				System.out.println("4");
 				FileDto dto = new FileDto(fId, fName, fTitle, fContent,
@@ -290,6 +294,23 @@ public class FileDao {
 		}	
 	}
 
-	
+	public String checkDate(Timestamp fDate) {
+		String result = "";	
+//		1. 글을 작성하면 작성한 날 하루 동안 new 표시하기
+//		java.text.SimpleDateFormat sf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+//		String inputDate = sf.format(입력된 날짜);
+//		String now = sf.format(new java.util.Date());
+//		String mark = "";
+//		if(inputDate.equals(now)){
+//		 mark = "new";
+//		}
+		Date boardDate = fDate;
+		long now = System.currentTimeMillis();
+		long inputDate = boardDate.getTime();
+		if(now - inputDate < (1000*60*60*24*2)) {
+			result = "new	";
+		}		
+		return result;
+	}
 	
 }

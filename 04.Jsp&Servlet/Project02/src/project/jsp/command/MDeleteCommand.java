@@ -21,22 +21,18 @@ public class MDeleteCommand implements MCommand{
 	{
 		request.setCharacterEncoding("UTF-8");
 		
-		String mId = request.getParameter("mid");
+		String mId = request.getParameter("mId");
 		
 		MemberDao dao = MemberDao.getInstance();
 		MemberDto dto = new MemberDto();
-		if(dao.confirmId(mId) == MemberDao.MEMBER_NONEXISTENT)
+		if(dao.confirmId(mId) == MemberDao.MEMBER_EXISTENT)
 		{
-			
-		}
-		
-		
-		dao.deleteMember(mId);
-		if(dao.deleteMember(mId) == MemberDao.MEMBER_DELETE_SUCCESS) {
+			dao.deleteMember(mId);
 			System.out.println("탈퇴 성공");
-
+			request.setAttribute("checkNum", 1);
 		}else {
 			System.out.println("탈퇴 실패");
+			request.setAttribute("checkNum", 0);
 		}
 	}
 }

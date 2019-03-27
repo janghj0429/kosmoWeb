@@ -13,14 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import project.jsp.command.BCommand;
 import project.jsp.command.BContentCommand;
-import project.jsp.command.BContentListCommand;
 import project.jsp.command.BDeleteCommand;
 import project.jsp.command.BListCommand;
 import project.jsp.command.BModifyCommand;
-import project.jsp.command.BNameListCommand;
 import project.jsp.command.BReplyCommand;
 import project.jsp.command.BReplyViewCommand;
-import project.jsp.command.BTitleListCommand;
+import project.jsp.command.BSearchCommand;
+import project.jsp.command.BWholeListCommand;
 import project.jsp.command.BWriteCommand;
 import project.jsp.command.FContentCommand;
 import project.jsp.command.FDeleteCommand;
@@ -112,14 +111,31 @@ public class BFrontController extends HttpServlet {
 		}else if(com.equals("/deleteMember.do")) {
 			mcommand = new MDeleteCommand();
 			mcommand.execute(request, response);
-			viewPage = "logout.jsp";
+			if (session.getAttribute("checkNum").equals(1)) {
+				
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('탈퇴성공');location.href='logout.jsp'</script>");
+				return;
+				//viewPage = "main.jsp";
+			}else {
+				
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('탈퇴실패');location.href='main.jsp';</script>");
+				out.flush();
+				return;
+				//viewPage = "login.jsp";
+			}
 		}else if(com.contentEquals("/list.do")) {
 			bcommand = new BListCommand();
 			bcommand.execute(request, response);
 			viewPage = "list.jsp";
-		}
-		
-		else if(com.contentEquals("/write_view.do")) {
+		}else if(com.contentEquals("/wholelist.do")) {
+			bcommand = new BWholeListCommand();
+			bcommand.execute(request, response);
+			viewPage = "list.jsp";
+		}else if(com.contentEquals("/write_view.do")) {
 			viewPage = "write_view.jsp";
 		}else if(com.contentEquals("/write.do")) {
 			bcommand = new BWriteCommand();
@@ -194,32 +210,18 @@ public class BFrontController extends HttpServlet {
 			bcommand.execute(request, response);
 			viewPage = "filelist.do?page="+curPage;
 		}
-		
+	////////////////////////////////////////////////////////////////////	
 		else if (com.contentEquals("/search.do")) {
 			String column = request.getParameter("column");
 			String word = request.getParameter("word");
+			session.setAttribute("column", column);
+			session.setAttribute("word", word);
 			System.out.println(column+word);
-			if(column.equals("bName")) {
-				bcommand = new BNameListCommand();
-				bcommand.execute(request, response);
-				viewPage = "namelist.jsp";
-			}else if(column.equals("bContent")) {
-				
-				bcommand = new BContentListCommand();
-				bcommand.execute(request, response);
-				viewPage = "contentlist.jsp";
-			}else if(column.equals("bTitle")) {
-				
-				bcommand = new BTitleListCommand();
-				bcommand.execute(request, response);
-				viewPage = "titlelist.jsp";
-			}else {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('재입력');location.href='main.jsp';</script>");
-				out.flush();
-				viewPage = "main.jsp";
-			}
+			System.out.println("세션값"+session.getAttribute("column")+session.getAttribute("word"));
+
+			bcommand = new BSearchCommand();
+			bcommand.execute(request, response);
+			viewPage = "searchlist.jsp";
 		}else if(com.contentEquals("/nctcontent_view.do")) {
 			bcommand = new NCTcontentCommand();
 			bcommand.execute(request, response);

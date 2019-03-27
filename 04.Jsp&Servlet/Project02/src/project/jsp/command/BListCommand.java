@@ -36,14 +36,16 @@ public class BListCommand implements BCommand{
 		
 		nPage = pinfo.getCurPage();
 		
-		HttpSession session = null;
-		
+		HttpSession session = null;	
 		session = request.getSession();
 		session.setAttribute("cpage", nPage);
 		System.out.println("카테고리:"+pinfo.getBoardCategory());
 		
 		ArrayList<BoardDto>	dtos = dao.list(nPage, boardCategory);
 		request.setAttribute("list", dtos);
+		
+		
+		
 		session.setAttribute("bCategory", bCategory);
 		System.out.println("list 완");
 		

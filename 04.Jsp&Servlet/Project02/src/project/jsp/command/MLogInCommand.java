@@ -24,8 +24,8 @@ public class MLogInCommand implements MCommand{
 	{
 		request.setCharacterEncoding("UTF-8");
 		
-		String mId = request.getParameter("mid");
-		String mPw = request.getParameter("mpw");
+		String mId = request.getParameter("mId");
+		String mPw = request.getParameter("mPw");
 
 		MemberDao dao = MemberDao.getInstance();
 		int checkNum = dao.userCheck(mId, mPw);

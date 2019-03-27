@@ -22,7 +22,7 @@ function Logout() {
 
 <body>
 
-<a href="#none" title="로그아웃" onclick="Logout();">
+<a href="#none" title="로그아웃" onclick="javascript:window.location='test.jsp'">
 
 
 main

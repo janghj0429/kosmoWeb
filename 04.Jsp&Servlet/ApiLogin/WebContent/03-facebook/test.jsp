@@ -62,8 +62,7 @@
       var mId = response.id;
       console.log(mId);
       window.location.replace("main.jsp?mId="+mId);
-	
-
+      fbLogout();
     });
   }
 
@@ -78,7 +77,6 @@
 
 <div id="logout" style="display: none;">
     <input type="button" onclick="fbLogout();" value="로그아웃" /><br>
-
 </div>
 
 
