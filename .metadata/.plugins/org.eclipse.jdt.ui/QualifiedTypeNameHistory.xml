@@ -32,4 +32,8 @@
 <fullyQualifiedTypeName name="project.jsp.dao.BoardDao"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="nl.captcha.Captcha"/>
 </qualifiedTypeNameHistroy>

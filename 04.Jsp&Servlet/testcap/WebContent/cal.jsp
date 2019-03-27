@@ -109,7 +109,7 @@
 				sb.append(inputLine);
 			}
 			br.close();
-			System.out.println(sb.toString());
+			System.out.println(sb.toString()+"네이버로부터받은값");
 			result=sb.toString().substring(10,14);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -125,10 +125,21 @@
 	//System.out.println(captchaImageName);
 	String key = request.getParameter("key");
 	String value = request.getParameter("value");
-
+	System.out.println(key+ " :: " + value);
+	
 	if (value != null) {
 		result=this.captchaNkeyResult(key, value);
 		System.out.println("result>>>"+result);
+		if(result.equals("true")){
+			result = "{\"code\":\"true\", \"desc\":\"캡차 성공\"}";
+			System.out.println("비교성공");
+			//result = "true";
+
+		}else{
+			result = "{\"code\":\"fals\", \"desc\":\"캡차 실패\"}";
+			System.out.println("비교실패");		
+		}
+		
 	} else {
 		key = this.captchaNkey();
 		captchaImageName = this.captchaImage(key, dirPath);
