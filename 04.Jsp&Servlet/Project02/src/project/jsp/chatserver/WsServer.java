@@ -74,7 +74,7 @@ public class WsServer {
 		try {
 			for( Session session : WsServer.sessions ) {
 				if( ! self.getId().equals(session.getId()) )
-					session.getBasicRemote().sendText("All : " + message);
+					session.getBasicRemote().sendText(message);
 			}
 		}catch(IOException e) {
 			e.printStackTrace();

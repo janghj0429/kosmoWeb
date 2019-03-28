@@ -15,6 +15,7 @@ public class FListCommand implements BCommand{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 	{
+		
 		int nPage = 1;
 		try {
 			String sPage = request.getParameter("page");

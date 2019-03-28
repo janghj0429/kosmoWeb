@@ -20,9 +20,20 @@
 		}
 	</style>
 	
+	<script type="text/javascript" language="javascript">
+		function enterkey(){
+			if(window.event.keyCode == 13){
+				send();
+				$("#messageinput").val("");
+			}	
+		}
+	
+	</script>
+	
     <title></title>
     
     <%
+    request.setCharacterEncoding("UTF-8");
 	String chatName = request.getParameter("chatName");
 	String userId = (String)session.getAttribute("mId");
 	if(chatName == null){
@@ -94,7 +105,7 @@
 	    <tr>
 	      <th colspan="4">
 	      <!-- Server responses get written here -->
-	      	<div id="messages">출11력</div>
+	      	<div id="messages"></div>
 	      </th>
 	    </tr>
 	  </tbody>
@@ -111,8 +122,33 @@
 	  </thead>
 	  <tbody>
 	    <tr>
-	      <th>입력</th>
-	      <td colspan="3"><input type="text" id="messageinput" /></td>
+	      	<th>입력</th>
+	      	<td colspan="3"><input class="btn btn-outline-dark" type="text" id="messageinput" onkeyup="enterkey();" /></td>
+	    </tr>
+	    <tr>
+	    	<form id="tranForm" name="tranForm">
+			<td><textarea id="sendText" class="form-control" name="content" col="40" row="4"></textarea></td>
+			<td>
+				<select name="source" class="custom-select custom-select-sm">
+					<option value="ko" >한국어</option>
+					<option value="en">영어</option>
+				</select>
+
+				<select name="target" class="custom-select custom-select-sm">
+					<option value="en">영어</option>
+					<option value="ko">한국어</option>
+					<option value="de">독일어</option>
+					<option value="es">스페인어</option>
+					<option value="ru">러시아어</option>
+				</select>
+			</td>
+			<td>
+				<input type="button" onclick="jsonSend();"class="btn btn-outline-dark" value="번역하기">
+			</td>
+			<td>
+				<textarea id="resultText" class="form-control" name="content" col="40" row="4"></textarea>
+			</td>
+			</form>	 
 	    </tr>
 	    <tr>
 	      <td><button class="btn btn-outline-dark"  type="button" onclick="openSocket();">open</button></td>
@@ -123,6 +159,46 @@
 	    
 	  </tbody>
 	</table>
+
+
+	
+	<script src="http://code.jquery.com/jquery.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+		openSocket();
+	});
+	
+	
+	//번역을 위해서 버튼 이벤트를 위해서 사용하는것
+	
+	function jsonSend(){
+		var data = $("#tranForm").serialize();
+		$.ajax({
+			url:"/Project02/translate",
+			type:"POST",
+			data: data, //json 보내는 방법
+			success:function(data){ //서블렛을 통한 결과값 수령
+				console.log(data);
+				//alert(data);
+				
+				//String 의 값을 object 형식으로 변환
+				var result_obj = JSON.parse(data);
+				console.log(result_obj);
+				console.log(result_obj.message.result.translatedText);
+				//결과값을 textarea에 넣기 위해
+				$("#messageinput").val(result_obj.message.result.translatedText).focus();
+				$("#resultText").val(result_obj.message.result.translatedText);
+			},
+			error:function(e){
+				console.log(e);
+				alert("번역실패");
+			}
+		});
+	}
+	</script>
+	
+	
 	
 	<!-- Script to utilize the WebSocket -->
 	<script type="text/javascript">
@@ -135,11 +211,11 @@
 				writeResponse("WebSocket is already opened.");
 				return;
 			}
-			writeResponse("0");
+			
 			//Create a new instance of the websocket
 			//webSocket = new WebSocket("ws://localhost/   *ProjectName*   /echo");
 			webSocket = new WebSocket("ws://localhost:8081/Project02/websocketendpoint2");
-			writeResponse("1");
+			
 			/**
 			*Bind functions to the listeners for the websocket.
 			*/
@@ -168,7 +244,7 @@
 		function send(){
 			var chatName = "<%= chatName %>";
 			var text = document.getElementById("messageinput").value;
-			webSocket.send(chatName + "|" + text);
+			webSocket.send(chatName + ":" + text);
 		}
 		
 		function closeSocket(){
@@ -182,7 +258,11 @@
 		}
 		
 		function writeResponse(text){
-			messages.innerHTML += "<br/>" + text;
+			var chatName = "<%=chatName%>";
+			var nameLength = chatName.length;
+			var name = text.substr(0, chatName.length);
+			var str = text;
+			messages.innerHTML += "<br/>"  +text;
 		}
 	</script>
 

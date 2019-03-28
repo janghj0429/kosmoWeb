@@ -19,7 +19,51 @@
     <title></title>
   </head>
   <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="main.jsp">
+	  	<img src="Desert.png" width="30" class="d-inline-block align-top" alt="">Jhj</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="filelist.do">자료실</a>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          게시판
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="wholelist.do">전체게시판</a>
+	          <a class="dropdown-item" href="list.do?bCategory=0">공지사항</a>
+	          <a class="dropdown-item" href="list.do?bCategory=1">자유게시판</a>
+	          <div class="dropdown-divider"></div>
+	          <a class="dropdown-item" href="list.do?bCategory=2">etc</a>
+	        </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="secession.jsp">회원탈퇴</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="chatlogin.jsp" >채팅</a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0" action="search.do" method="post">
+	    	<select name="column" class="custom-select custom-select-sm">
+					<option value="bName" >이름</option>
+					<option value="bContent" >내용</option>
+					<option value="bTitle" >제목</option>
+			</select>
+		    <input class="form-control mr-sm-2" type="search" name="word" value="" placeholder="Search" aria-label="Search">
+		    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    </form>
+	  </div>
+	</nav>    
 	<table class="table" >
 	  <thead class="thead-dark">
 	  	<tr>

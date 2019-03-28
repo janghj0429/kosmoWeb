@@ -151,7 +151,7 @@
 
       
       
-      <Context docBase="testcap" path="/testcap" reloadable="true" source="org.eclipse.jst.jee.server:testcap"/><Context docBase="Jsp25_4-Ajax" path="/Jsp254" reloadable="true" source="org.eclipse.jst.jee.server:Jsp25_4-Ajax"/><Context docBase="Project02" path="/Project02" reloadable="true" source="org.eclipse.jst.jee.server:Project02"/></Host>
+      <Context docBase="Project02" path="/Project02" reloadable="true" source="org.eclipse.jst.jee.server:Project02"/></Host>
     </Engine>
   </Service>
 </Server>
