@@ -31,6 +31,7 @@
 	<%
 	}else{
 		session.setAttribute("chatName", chatName);
+		request.setAttribute("chatName", chatName);
 	}
 	%>
 </head>

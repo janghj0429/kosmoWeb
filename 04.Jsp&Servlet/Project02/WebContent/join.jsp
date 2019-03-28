@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,9 +52,62 @@
 			$('#memail').focus();
 			return;
 		}
+		
+		if($('#maddress').val().length == 0){
+			alert("메일은 필수사항입니다.");
+			$('#mmaddress').focus();
+			return;
+		}
 		document.join_form.submit();
 		//submit_ajax();
 	}
+	function changeCaptcha(){
+		$.ajax({
+			url : "cal.jsp",
+			dataType:"json",
+			success : function(data) {
+				console.log(data.key);
+				$("#key").val(data.key);
+				$("#div01").html("<img src='captchaImage/"+data.captchaImageName+"'>");
+			}
+		});	
+	}
+	
+	function btnOn(){
+		var btn;
+		btn = document.getElementById('btn');
+		btn.disabled = false;
+	}
+
+	$(document).ready(function() {
+		changeCaptcha();
+		
+		//$('#reLoad').click(function(){ changeCaptcha(); }); //새로고침버튼에 클릭이벤트 등록
+		$('#reLoad').on("click",function(){
+			changeCaptcha();
+		});
+		
+		$("#btn01").on("click",function(){
+			var form01Data = $("#form01").serialize();
+			console.log(form01Data);
+			$.ajax({
+				url : "cal.jsp",
+				data : form01Data,
+				dataType:"json",
+				success : function(data) {
+					console.log(data);
+					var result = data;
+					if(result.code == "true" ){
+						alert(result.desc);
+						btnOn();
+					}else{
+						alert(result.desc);
+						changeCaptcha();
+					}
+				}
+			});
+		});
+	});
 	function submit_ajax(){
 		var queryString = $("#join_form").serialize();
 		$.ajax({
@@ -67,7 +122,6 @@
 				var result = JSON.parse(json);
 				if(result.code =="success"){
 					alert(result.desc)
-					window.location.replace("main.jsp");
 				}else{
 					alert(result.desc);
 					window.location.replace("join.jsp");
@@ -87,36 +141,45 @@
     <title></title>
   </head>
   <body>
-	<form id="join_form" action="join.do" method="post">
+	<form id="join_form" name="join_form" action="join.do" method="post">
 	
-	  <div class="form-group">
-	      <label for="inputId">ID</label>
-	      <input type="text" class="form-control" id="mid" name="mid" placeholder="ID">
-	  </div>
-	  <div class="form-group">
-	      <label for="inputPassword">Password</label>
-	      <input type="password" class="form-control" id="mpw" name="mpw" placeholder="Password">
-	  </div>
-	  <div class="form-group">
-	      <label for="inputPassword">Password check</label>
-	      <input type="password" class="form-control" id="mpw_check" name="mpw_check" placeholder="Password_check">
-	  </div>
-	  <div class="form-group">
-	      <label for="inputName">Name</label>
-	      <input type="text" class="form-control" name="mname" id="mname" placeholder="Name">
-	  </div>
-	  <div class="form-group">
-	      <label for="inputEmail">Email</label>
-	      <input type="email" class="form-control" id="memail" name="memail" placeholder="Email"><br/>
-	  </div>
-	  <div class="form-group">
-	  	  <label for="inputAddress">Address </label>
-	    	 <input type="text" class="form-control" name="maddress" id="maddress"  placeholder="Apartment, studio, or floor">
-	  </div>
-	  
-	  <button type="submit" class="btn btn-primary">Sign in</button>
+	  	<div class="form-group">
+	      	<label for="inputId">ID</label>
+	      	<input type="text" class="form-control" id="mid" name="mid" placeholder="ID">
+	  	</div>
+	  	<div class="form-group">
+	      	<label for="inputPassword">Password</label>
+	      	<input type="password" class="form-control" id="mpw" name="mpw" placeholder="Password">
+	  	</div>
+	  	<div class="form-group">
+	      	<label for="inputPassword">Password check</label>
+	      	<input type="password" class="form-control" id="mpw_check" name="mpw_check" placeholder="Password_check">
+	  	</div>
+	  	<div class="form-group">
+	      	<label for="inputName">Name</label>
+	      	<input type="text" class="form-control" name="mname" id="mname" placeholder="Name">
+	  	</div>
+	  	<div class="form-group">
+	      	<label for="inputEmail">Email</label>
+	      	<input type="email" class="form-control" id="memail" name="memail" placeholder="Email"><br/>
+	  	</div>
+	  	<div class="form-group">
+	  	  	<label for="inputAddress">Address </label>
+	    	<input type="text" class="form-control" name="maddress" id="maddress"  placeholder="Apartment, studio, or floor">
+		</div>	  
 	</form>
-    
+	
+    <div id="div01" style="text-align:center;">
+	</div>
+	<form id="form01" style="text-align:center;">
+		<input type="hidden" id="key" name="key">
+		<input type="text" name="value" style="margin:0 auto;">
+		<button type="button" class="btn btn-primary" id="btn01">전송</button>
+		<input id="reLoad" class="btn btn-primary" type="button" value="새로고침" />
+	</form>
+	<div style="text-align:center;">
+		<input type="button" id="btn" class="btn btn-primary" disabled="disabled" onclick="form_check();" value="Sign In">	  
+	</div>
 
 
     <!-- Optional JavaScript -->

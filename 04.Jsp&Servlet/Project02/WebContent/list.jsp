@@ -40,10 +40,10 @@
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="wholelist.do">전체게시판</a>
-	          <a class="dropdown-item" href="list.do?bCategory=0"<%session.setAttribute("bCategory", 0);%>>공지사항</a>
-	          <a class="dropdown-item" href="list.do?bCategory=1"<%session.setAttribute("bCategory", 1);%>>자유게시판</a>
+	          <a class="dropdown-item" href="list.do?bCategory=0">공지사항</a>
+	          <a class="dropdown-item" href="list.do?bCategory=1">자유게시판</a>
 	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="list.do?bCategory=2"<%session.setAttribute("bCategory", 2);%>>etc</a>
+	          <a class="dropdown-item" href="list.do?bCategory=2">etc</a>
 	        </div>
 	      </li>
 	      <li class="nav-item">

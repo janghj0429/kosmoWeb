@@ -594,10 +594,11 @@ public class BoardDao {
 			
 			String query = "select count(*) as total from " +
 						   " mvc_board where " + column +
-						   " like  ? ";
+						   " like " + " '%"+word+"%'";
+						   
 			pstmt = con.prepareStatement(query);
 			//pstmt.setString(1, column);
-			pstmt.setString(1, "%"+word+"%");
+			//pstmt.setString(1, word);
 			resultSet = pstmt.executeQuery();
 			
 			if(resultSet.next()) {
@@ -669,7 +670,7 @@ public class BoardDao {
 			String query = "select * from( " +
 						   "select rownum num, A.* from( " +
 						   "select * from( " +
-						   "select * from mvc_board where "+column+" like ?) " +
+						   "select * from mvc_board where "+column+" like "+ " '%"+word+"%'" + ")" +
 						   "order by bgroup desc, bstep asc) A " +
 						   "where rownum <= ?) B where b.num >= ? ";
 			
@@ -677,9 +678,9 @@ public class BoardDao {
 			System.out.println(column + word);
 			pstmt = con.prepareStatement(query);
 			//pstmt.setString(1, column);
-			pstmt.setString(1, "%"+word+"%");
-			pstmt.setInt(2, nEnd);
-			pstmt.setInt(3, nStart);
+			//pstmt.setString(1, "%"+word+"%");
+			pstmt.setInt(1, nEnd);
+			pstmt.setInt(2, nStart);
 			resultSet = pstmt.executeQuery();
 //			System.out.println( resultSet.getInt("bCategory") + " listDao");
 			System.out.println("here2");

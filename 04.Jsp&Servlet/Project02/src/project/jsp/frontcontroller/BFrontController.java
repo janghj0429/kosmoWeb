@@ -128,6 +128,7 @@ public class BFrontController extends HttpServlet {
 				//viewPage = "login.jsp";
 			}
 		}else if(com.contentEquals("/list.do")) {
+			//session.setAttribute("bCategory", request.getParameter("bCategory"));
 			bcommand = new BListCommand();
 			bcommand.execute(request, response);
 			viewPage = "list.jsp";
@@ -214,8 +215,8 @@ public class BFrontController extends HttpServlet {
 		else if (com.contentEquals("/search.do")) {
 			String column = request.getParameter("column");
 			String word = request.getParameter("word");
-			session.setAttribute("column", column);
-			session.setAttribute("word", word);
+//			session.setAttribute("column", column);
+//			session.setAttribute("word", word);
 			System.out.println(column+word);
 			System.out.println("세션값"+session.getAttribute("column")+session.getAttribute("word"));
 

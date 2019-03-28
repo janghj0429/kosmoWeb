@@ -15,6 +15,8 @@ public class BListCommand implements BCommand{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 	{
+		HttpSession session = null;	
+		session = request.getSession();
 		int nPage = 1;
 		try {
 			String sPage = request.getParameter("page");
@@ -23,7 +25,7 @@ public class BListCommand implements BCommand{
 		}catch(Exception e) {
 			
 		}
-		
+		session.setAttribute("bCategory", request.getParameter("bCategory"));
 		String bCategory = request.getParameter("bCategory");
 		int boardCategory = Integer.parseInt(request.getParameter("bCategory"));
 		System.out.println("리스트 커맨드" + nPage + ":" + boardCategory);
@@ -36,8 +38,6 @@ public class BListCommand implements BCommand{
 		
 		nPage = pinfo.getCurPage();
 		
-		HttpSession session = null;	
-		session = request.getSession();
 		session.setAttribute("cpage", nPage);
 		System.out.println("카테고리:"+pinfo.getBoardCategory());
 		

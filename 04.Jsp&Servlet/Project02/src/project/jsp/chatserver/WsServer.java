@@ -60,7 +60,7 @@ public class WsServer {
 		System.out.println("Message from" + session.getId() + ": " + message);
 		try {
 			final Basic basic = session.getBasicRemote();
-			basic.sendText("to : " + message);
+			basic.sendText(message);
 		}catch(IOException ex) {
 			ex.printStackTrace();
 		}

@@ -32,9 +32,13 @@ public class BSearchCommand implements BCommand{
 		System.out.println("세션값"+session.getAttribute("column")+session.getAttribute("word"));
 		
 		if(request.getParameter("column") != null && request.getParameter("word")!=null) {
+			System.out.println("파라미터");
 			column = request.getParameter("column");
 			word = request.getParameter("word");
+			session.setAttribute("column", column);
+			session.setAttribute("word", word);
 		}else {
+			System.out.println("세션");
 			column = (String)session.getAttribute("column");
 			word = (String)session.getAttribute("word");
 		}

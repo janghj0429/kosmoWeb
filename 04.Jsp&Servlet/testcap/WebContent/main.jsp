@@ -8,5 +8,12 @@
 </head>
 <body>
 메인페이지!!
+
+<%=request.getParameter("mid")%>
+<%=request.getParameter("mpw")%>
+<%=request.getParameter("mname")%>
+<%=request.getParameter("memail")%>
+<%=request.getParameter("maddress")%>
+
 </body>
 </html>
