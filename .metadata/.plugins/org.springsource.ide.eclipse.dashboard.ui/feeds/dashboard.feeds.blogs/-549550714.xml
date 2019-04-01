@@ -5,7 +5,21 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-03-29T09:01:36Z</updated>
+  <updated>2019-04-01T08:41:09Z</updated>
+  <entry>
+    <title>Spring Framework 5.1.6, 5.0.13 and 4.3.23 available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/04/01/spring-framework-5-1-6-5-0-13-and-4-3-23-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>St?phane Nicoll</name>
+    </author>
+    <id>tag:spring.io,2019-04-01:3621</id>
+    <updated>2019-04-01T08:41:09Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;5.1.6.&lt;/code&gt;, &lt;code&gt;5.0.13&lt;/code&gt; and &lt;code&gt;4.3.23&lt;/code&gt; are available from &lt;a href="https://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; as well as Maven Central now.&lt;/p&gt;
+&lt;p&gt;Spring Framework &lt;code&gt;5.1.6&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.1.6.RELEASE"&gt;49 fixes and improvements&lt;/a&gt;. Spring Framework &lt;code&gt;5.0.13&lt;/code&gt; is the last release of the &lt;code&gt;5.0.x&lt;/code&gt; line and includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.0.13.RELEASE"&gt;25 fixes and selected improvements&lt;/a&gt;. At this point, we expect all &lt;code&gt;5.x&lt;/code&gt; users to upgrade to &lt;code&gt;5.1.6&lt;/code&gt;. We&amp;rsquo;ve also released &lt;code&gt;4.3.23&lt;/code&gt; that includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v4.3.23.RELEASE"&gt;20 fixes and selected improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;As usual, those maintenance releases will be used for the upcoming Spring Boot &lt;code&gt;1.5.20&lt;/code&gt;, &lt;code&gt;2.0.9&lt;/code&gt;, &lt;code&gt;2.1.4&lt;/code&gt; releases coming up later this week.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/5.1.6.RELEASE/spring-framework-reference"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Tools 4.2.0 released</title>
     <link rel="alternate" href="https://spring.io/blog/2019/03/29/spring-tools-4-2-0-released" />
@@ -695,18 +709,5 @@ dependencies {
 &lt;p&gt;For a complete list of changes and upgrade instructions, please see the &lt;a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes"&gt;Spring Boot 2.2 Release Notes&lt;/a&gt; on the wiki and the &lt;a href="http://docs.spring.io/spring-boot/docs/2.2.0.M1/reference/html/"&gt;updated reference documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;If you want to get started with 2.2 and try out the new features, you can bootstrap a new project on &lt;a href="https://start.spring.io"&gt;https://start.spring.io&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.2.0.M1/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>A Bootiful Podcast: Matt Raible and James Ward at Devnexus 2019</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/03/08/a-bootiful-podcast-matt-raible-and-james-ward-at-devnexus-2019" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2019-03-08:3599</id>
-    <updated>2019-03-08T05:48:43Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans! In this extra-long installment I talk with longtime friends and fellow developer advocates, Okta&amp;rsquo;s Matt Raible and Google&amp;rsquo;s James Ward. We talked about Java, Kotlin, Spring, cloud computing technologies, security, Go, paradigm changes, web frameworks past and present, Macromedia, Adobe, Scala, and a &lt;em&gt;million&lt;/em&gt; more things! This was a ton of fun for me so I&amp;rsquo;m hoping you&amp;rsquo;ll enjoy it too.&lt;/p&gt;
-&lt;p&gt;Google Developer Advocate &lt;a href="http://twitter.com/_jamesward"&gt;James Ward on Twitter (@_jamesward)&lt;/a&gt;&lt;br/&gt;Okta Developer Advocate &lt;a href="http://twitter.com/mraible"&gt;Matt Raible on Twitter (@mraible)&lt;/a&gt;&lt;/p&gt;
-&lt;iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/586589739&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"&gt;&lt;/iframe&gt;</content>
   </entry>
 </feed>
