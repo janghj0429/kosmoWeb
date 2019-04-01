@@ -42,7 +42,7 @@ public class download extends HttpServlet {
 			
 			// ② 경로 가져오기
 //			String saveDir = this.getServletContext().getRealPath("fileUpload");
-			String saveDir = "D:/janghj0429/fileUpload";
+			String saveDir = request.getRealPath("fileUpload");
 			File file = new File(saveDir + "/" + fileName);
 			System.out.println("파일명 : " + fileName);
 			

@@ -5,8 +5,8 @@
 	</list>
 	<list key="installedFeatures">
 		<item value="com.ianbrandt.tools.m2e.mdp.feature:0.0.4.201409291703"/>
-		<item value="org.aspectj:1.9.2.201811011643"/>
-		<item value="org.eclipse.ajdt:2.2.4.201811011643"/>
+		<item value="org.aspectj:1.9.2.201902212122"/>
+		<item value="org.eclipse.ajdt:2.2.4.201902212122"/>
 		<item value="org.eclipse.buildship:3.0.2.v20181217-2322-s"/>
 		<item value="org.eclipse.cft.server.core.feature:1.2.3.v201805291812"/>
 		<item value="org.eclipse.cft.server.ui.feature:1.0.10.v201805291812"/>
@@ -44,8 +44,8 @@
 		<item value="org.eclipse.jst.ws.axis2tools.feature:1.1.301.v201802222200"/>
 		<item value="org.eclipse.jst.ws.cxf.feature:1.1.400.v201810250809"/>
 		<item value="org.eclipse.jst.ws.jaxws.feature:1.2.500.v201810250809"/>
-		<item value="org.eclipse.m2e.feature:1.10.0.20181127-2120"/>
-		<item value="org.eclipse.m2e.logback.feature:1.10.0.20181127-2120"/>
+		<item value="org.eclipse.m2e.feature:1.11.0.20190220-2119"/>
+		<item value="org.eclipse.m2e.logback.feature:1.11.0.20190220-2119"/>
 		<item value="org.eclipse.m2e.wtp.feature:1.4.1.20181128-2152"/>
 		<item value="org.eclipse.m2e.wtp.jaxrs.feature:1.4.1.20181128-2152"/>
 		<item value="org.eclipse.m2e.wtp.jsf.feature:1.4.1.20181128-2152"/>
@@ -72,7 +72,7 @@
 		<item value="org.eclipse.tm.terminal.control.feature:4.5.1.201811011802"/>
 		<item value="org.eclipse.tm.terminal.feature:4.5.1.201811011802"/>
 		<item value="org.eclipse.tm.terminal.view.feature:4.5.1.201811011802"/>
-		<item value="org.eclipse.userstorage:1.1.0.v20170526-1605"/>
+		<item value="org.eclipse.userstorage:1.2.0.v20190308-0433"/>
 		<item value="org.eclipse.wst.common.fproj:3.7.2.v201808020026"/>
 		<item value="org.eclipse.wst.jsdt.chromium.debug.feature:0.6.0.v201705091354"/>
 		<item value="org.eclipse.wst.jsdt.feature:2.1.1.v201804042202"/>
@@ -86,24 +86,24 @@
 		<item value="org.sonatype.m2e.buildhelper.feature:0.15.0.201207090124"/>
 		<item value="org.sonatype.m2e.egit.feature:0.15.1.201806191431"/>
 		<item value="org.sonatype.m2e.mavenarchiver.feature:0.17.2.201606141937-signed-20160830073346"/>
-		<item value="org.springframework.ide.eclipse.aeri.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.ajdt.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.aop.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.autowire.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.batch.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.boot.dash.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.boot.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.cft.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.data.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.integration.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.maven.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.mylyn.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.security.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springframework.ide.eclipse.webflow.feature:3.9.7.201812201020-RELEASE"/>
-		<item value="org.springsource.sts.cft:3.9.7.201812201326-RELEASE"/>
-		<item value="org.springsource.sts.package:3.9.7.201812201326-RELEASE-e410"/>
-		<item value="org.springsource.sts:3.9.7.201812201326-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.aeri.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.ajdt.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.aop.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.autowire.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.batch.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.boot.dash.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.boot.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.cft.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.data.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.integration.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.maven.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.mylyn.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.security.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springframework.ide.eclipse.webflow.feature:3.9.8.201903260659-RELEASE"/>
+		<item value="org.springsource.sts.cft:3.9.8.201903260742-RELEASE"/>
+		<item value="org.springsource.sts.package:3.9.8.201903260742-RELEASE-e410"/>
+		<item value="org.springsource.sts:3.9.8.201903260742-RELEASE"/>
 	</list>
 	<section name="CleanDialogSettings">
 		<item value="500" key="DIALOG_WIDTH"/>

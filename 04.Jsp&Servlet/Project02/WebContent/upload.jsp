@@ -17,7 +17,7 @@
 	System.out.println("h");
 	//String uploadPath = request.getSession().getServletContext().getRealPath("/");
 	//String uploadPath = request.getRealPath("fileUpload"); // upload는 폴더명 / 폴더의 경로를 구해옴
-	String uploadPath = "D:/janghj0429/fileUpload";
+	String uploadPath = request.getRealPath("fileUpload");;
 	System.out.println(uploadPath);
 
 	try {

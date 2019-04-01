@@ -55,18 +55,6 @@
 			margin:2px auto;
 		
 		}
-	
-		#check{
-			
-		}
-
-		#submit{
-			
-		}
-		
-		#join{
-			
-		}
 		
 		#footer{
 			width:760px;
@@ -108,9 +96,7 @@
 	    if (response.status === 'connected') {
 	      getINFO();
 	    } else {
-	      $('#login').css('display', 'block');
-	      $('#logout').css('display', 'none');
-	 
+	    	 $('#login').css('display', 'block');
 	    }
 	  }
 		  
@@ -122,20 +108,19 @@
 	
 	  function fbLogout () {
 	    FB.logout(function(response) {
-	      statusChangeCallback(response);
+	      
+	    	var iframe = document.createElement("iframe");
+	        iframe.src= "https://www.facebook.com/logout.php";
 	    });
 	  }
 	
 	  function getINFO() {
 	    FB.api('/me?fields=id,name,picture.width(100).height(100).as(picture_small)', function(response) {
-	      console.log(response);
-	      
-	      $('#login').css('display', 'none');
-	      $('#logout').css('display', 'block');
+	      console.log(response);        
 	      var mId = response.id;
 	      console.log(mId);
-	      window.location.replace("SnsCon?mId="+mId);
 	      fbLogout();
+	      window.location.replace("SnsCon?mId="+mId);
 	    });
 	  }
 	
@@ -150,7 +135,7 @@
     
     <div id="con">
     	<div id="header"> 
-    		<img class="max-small" src="img/googlelogo.png" alt="alt 구글로고">
+    		
     	</div>
     	<form action="login.do" method="post">
 		  <div class="form-group">
@@ -210,10 +195,7 @@
 			<div id="login" style="display: block;width:300; height:50;">
 		    	<input type="button" class="btn btn-primary btn-lg btn-block"onclick="fbLogin();" value="페이스북로그인" /><br>
 			</div>
-		
-			<div id="logout" style="display: none;width:300; height:50;">
-		   		<input type="button" onclick="fbLogout();" value="로그아웃" /><br>
-			</div>
+
 			
 			
 			<!-- 카카오 -->

@@ -148,16 +148,7 @@
 		</tr>
 	  </tbody>
 	</table>
-	
-	boardCategory : ${page.boardCategory}<br>
-	
-	totalCount : ${page.totalCount}<br>
-	listCount : ${page.listCount}<br>
-	totalPage : ${page.totalPage}<br>
-	curPage : ${page.curPage}<br>
-	pageCount : ${page.pageCount}<br>
-	startPage : ${page.startPage}<br>
-	endPage : ${page.endPage}<br>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

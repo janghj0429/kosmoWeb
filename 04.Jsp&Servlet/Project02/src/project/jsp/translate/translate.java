@@ -40,14 +40,15 @@ public class translate extends HttpServlet {
 		
 		//번역할 text 값 받아오기
 		String original_str = (String)request.getParameter("content");
-		
+		String source = (String)request.getParameter("source");
+		String target = (String)request.getParameter("target");
 		//결과값 보내기 위한
 		PrintWriter out= response.getWriter();
-		out.print( (String)nmtReturnResult(original_str) );
+		out.print( (String)nmtReturnResult(original_str, source, target) );
 		
 	}
 	
-	public String nmtReturnResult(String original_str) {
+	public String nmtReturnResult(String original_str, String source, String target) {
 		
 		//애플리케이션 클라리언트 아이디값;
 		String clientId = "1qsH2GcIpcDoSc5JxhvM";
@@ -67,7 +68,7 @@ public class translate extends HttpServlet {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "source=ko&target=en&text=" + text;
+            String postParams = "source="+source+"&target="+target+"&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);

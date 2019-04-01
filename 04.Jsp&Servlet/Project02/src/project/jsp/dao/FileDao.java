@@ -269,18 +269,18 @@ public class FileDao {
 		}
 	}
 	
-	public void filedelete(String fId) {
+	public void filedelete(String fName) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		String query = "delete from file_board " +
-					   " where fId = ?";
+					   " where fName = ?";
 		
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, fId);
-			System.out.println(fId +" delete fileDao진행");
+			pstmt.setString(1, fName);
+			System.out.println(fName +" delete fileDao진행");
 			int rn = pstmt.executeUpdate();
 		}catch(Exception e)	{
 			e.printStackTrace();

@@ -201,6 +201,7 @@ public class BoardDao {
 			
 			if(resultSet.next()) {
 				totalCount = resultSet.getInt("total");
+				System.out.println(totalCount);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

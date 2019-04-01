@@ -12,9 +12,9 @@ public class FDeleteCommand implements BCommand{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 	{
-		String fId = request.getParameter("fId");
+		String fName = request.getParameter("fName");
 		
 		FileDao dao = FileDao.getInstance();
-		dao.filedelete(fId);
+		dao.filedelete(fName);
 	}
 }

@@ -103,7 +103,7 @@
 		<tr>
 			<td colspan="2">		
 				<a class="btn btn-outline-dark"href="filelist.do?page=<%=session.getAttribute("cpage")%>">목록보기</a>&nbsp;&nbsp;
-				<a class="btn btn-outline-dark"href="filedelete.do?fId=${filecontent_view.fId}">삭제</a>&nbsp;&nbsp;
+				<a class="btn btn-outline-dark"href="filedelete.do?fName=${filecontent_view.fName}">삭제</a>&nbsp;&nbsp;
 			</td>		
 		</tr>
 	  </tbody>
