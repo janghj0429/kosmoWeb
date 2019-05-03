@@ -151,7 +151,7 @@
 
       
       
-      <Context docBase="Project02" path="/Project02" reloadable="true" source="org.eclipse.jst.jee.server:Project02"/></Host>
+      <Context docBase="Project02" path="/Project02" reloadable="true" source="org.eclipse.jst.jee.server:Project02"/><Context docBase="JspInServer" path="/JspInServer" reloadable="true" source="org.eclipse.jst.jee.server:JspInServer"/><Context docBase="Jsp26_2" path="/Jsp262" reloadable="true" source="org.eclipse.jst.jee.server:Jsp26_2"/></Host>
     </Engine>
   </Service>
 </Server>
