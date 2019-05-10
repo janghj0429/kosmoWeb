@@ -117,7 +117,7 @@
 								nhn.husky.EZCreator.createInIFrame({
 								    oAppRef: oEditors,
 								    elPlaceHolder: "ir1",
-								    sSkinURI: "naver-editor/SmartEditor2Skin.html",
+								    sSkinURI: "./naver-editor/SmartEditor2Skin.html",
 								    fCreator: "createSEditor2"
 								});
 							</script>

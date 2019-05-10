@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mabatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.study.project.dao.FileDao">
+	<select id="listDao" resultType="com.study.project.dto.FileDto">
+		select *
+			from (
+				select rownum num, A.*
+					from (
+						select *
+							from file_board
+							order by fId desc ) A
+						where <![CDATA[ ROWNUM <= #{_nEnd} ]]> ) B
+					where B.num >= #{_nStart}
+	</select>
+	
+	<select id="articleCount" resultType="_int">
+		select count(*) from file_board
+	</select>
+	
+	<insert id="insertFile">
+		INSERT INTO file_BOARD (fId, fName, fTitle, fContent, fileName, orgfileName, fHit)
+			VALUES 
+			(file_board_seq.nextval, #{_fName}, #{_fTitle}, #{_fContent}, #{_fileName}, #{_orgfileName}, 0)
+	</insert>
+	
+	<select id="filecontentView" resultType="com.study.project.dto.FileDto">
+		SELECT * FROM file_BOARD WHERE fID = #{_fId}
+	</select>
+	
+	<update id="upHit">
+		UPDATE file_BOARD SET fHIT = fHIT + 1 WHERE fID = #{_fId}
+	</update>
+	
+	<delete id="filedelete">
+		DELETE FROM file_BOARD WHERE fID = #{_fId}
+	</delete>
+	
+	<select id="reply_view" resultType="com.study.project.dto.FileDto">
+		SELECT * FROM MVC_BOARD WHERE BID = #{_bId}
+	</select>
+	
+	<update id="replyShape">
+		UPDATE MVC_BOARD SET BSTEP = BSTEP + 1 WHERE BGROUP = #{_bGroup} AND BSTEP > #{_bStep}
+	</update>
+	
+	<insert id="replyDao">
+		INSERT INTO MVC_BOARD (BCATEGORY, BID, BNAME, BTITLE, BCONTENT, BGROUP, BSTEP, BINDENT)
+			VALUES 
+			(#{_bCategory}, MVC_BOARD_SEQ.NEXTVAL, #{_bName}, #{_bTitle}, #{_bContent}, 
+			#{_bGroup}, #{_bStep}, #{_bIndent})
+	</insert>
+</mapper>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.study.spring15.dao.BDao;

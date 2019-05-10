@@ -151,7 +151,7 @@
 
       
       
-      <Context docBase="Ex08-3-JDBC" path="/spring15" reloadable="true" source="org.eclipse.jst.jee.server:Ex08-3-JDBC"/></Host>
+      <Context docBase="Project02" path="/project" reloadable="true" source="org.eclipse.jst.jee.server:Project02"/></Host>
     </Engine>
   </Service>
 </Server>
