@@ -1,0 +1,6 @@
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'Ex27_Security_Database'
